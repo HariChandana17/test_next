@@ -1,21 +1,5 @@
 // const API_BASE_URL = "http://localhost:5000";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}  ]    }      "dest": "/frontend/dist/$1"      "src": "/(.*)",    {  "routes": [  ],    }      "config": { "distDir": "dist" }      "use": "@vercel/static-build",      "src": "frontend/package.json",    {  "builds": [// // Individual exports so you can use: import { sendRequirements } from ...
+// }  ]    }      "dest": "/frontend/dist/$1"      "src": "/(.*)",    {  "routes": [  ],    }      "config": { "distDir": "dist" }      "use": "@vercel/static-build",      "src": "frontend/package.json",    {  "builds": [// // Individual exports so you can use: import { sendRequirements } from ...
 // export const sendRequirements = async (data: any) => {
 //   const response = await fetch(`${API_BASE_URL}/send-requirements`, {
 //     method: 'POST',
