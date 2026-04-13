@@ -57,47 +57,32 @@
 
 // Since we use the Vite Proxy in development and an optional backend URL in production,
 // read the backend base URL from environment variables.
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string) || "";
+const API_BASE_URL = (import.meta.env.VITE_API_URL as string) || "";
 const buildApiUrl = (path: string) => {
   const base = API_BASE_URL.replace(/\/$/, "");
   return base ? `${base}${path}` : path;
 };
 
-export const sendRequirements = async (data: any) => {
-  const isFormData = data instanceof FormData;
-
-  const endpoint = buildApiUrl("/send-requirements");
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: isFormData ? {} : { 'Content-Type': 'application/json' },
-    body: isFormData ? data : JSON.stringify(data),
-  });
-
-  if (!response.ok) throw new Error('Network response was not ok');
-  return response.json();
-};
-
 export const sendEmailContact = async (data: any) => {
-  const response = await fetch(`/send-email`, {
+  const endpoint = buildApiUrl("/send-email");
+
+  const response = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
+
   return response.json();
 };
 
 export const chatWithAI = async (message: string) => {
-  const response = await fetch(`/api/chat`, {
+  const endpoint = buildApiUrl("/api/chat");
+
+  const response = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message }),
   });
-  return response.json();
-};
 
-// 2. We also export an object as a backup (good practice)
-export const apiService = {
-  sendRequirements,
-  sendEmailContact,
-  chat: chatWithAI
+  return response.json();
 };
